@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OneItemView">
+        <attr name="name" format="string" />
+        <attr name="value" format="string" />
+        <attr name="oneTextSize" format="dimension" />
+        <attr name="oneTextColor" format="reference" />
+        <attr name="valueBg" format="reference"/>
+        <attr name="padLeft" format="dimension"/>
+        <attr name="padRight" format="dimension"/>
+    </declare-styleable>
+</resources>

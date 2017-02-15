@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="item"
+            type="com.example.twowaydatabindingexample.MainVM" />
+        <variable
+            name="ValueBean"
+            type="com.example.twowaydatabindingexample.ValueBean" />
+        <variable
+            name="spList"
+            type="java.util.List" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.title}" />
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@={item.checked}"
+            android:text="main switcher" />
+
+        <com.example.twowaydatabindingexample.CustomSwitcher
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:vm="@={item.checked}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This message visible only when switcher checked"
+            android:visibility="@{item.checked ? View.VISIBLE : View.GONE}" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_66"/>
+
+            <com.example.twowaydatabindingexample.OneItemEditView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="测试1"
+                app:valueDouble="@={ValueBean.money}"/>
+            <com.example.twowaydatabindingexample.OneItemEditView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="测试2"
+                app:valueDouble="@={ValueBean.money}"/>
+
+            <com.example.twowaydatabindingexample.OneItemSpinnerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="是否"
+                app:value="@={ValueBean.value}"
+                app:list="@={spList}"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:src="@{ValueBean.getImg(ValueBean.value)}" />
+            <com.example.twowaydatabindingexample.AView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:name="@={ValueBean.value}"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</layout>
